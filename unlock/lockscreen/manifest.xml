@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Lockscreen version="1" frameRate="30" displayDesktop="true" screenWidth="1080">
+  <Time x="30" y="630" align="left" alignV="top" src="number.png"/>
+  <text align="center" color="#FFffffff" h="100" size="14" src="system.time.ampm" visible="system.time.showampm" w="200" x="707" y="664"/>
+  <DateTime x="250" y="550" align="left" alignV="top" color="#ffffff" size="60" format="dd.MM.yyyy  EEEE"/>
+  <Group visibility="ne(0,#call_missed_count)">
+    <Text x="17" y="#screen_height-1170" color="#ffffff" size="40" alignV="left" format="Пропущенный звонок：%d" paras="#call_missed_count"/>
+  </Group>
+  <Group visibility="ne(0,#sms_unread_count)">
+    <Text x="50" y="#screen_height-1170" color="#ffffff" size="40" alignV="left" format="Непрочитанное сообщение：%d" paras="#sms_unread_count"/>
+  </Group>
+	<Group name="Батарейка">  
+  <Image x="0" y="200" visibility="eq(int(#battery_level/10),0)" src="charge/01.png">
+    <AlphaAnimation>
+      <Alpha a="0" time="0"/>
+      <Alpha a="255" time="500"/>
+      <Alpha a="255" time="1000"/>
+      <Alpha a="0" time="1500"/>
+    </AlphaAnimation>
+  </Image> 
+  <Image x="0" y="200" visibility="eq(int(#battery_level/10),1)" src="charge/11.png"/>
+  <Image x="0" y="200" visibility="eq(int(#battery_level/10),2)" src="charge/21.png"/>
+  <Image x="0" y="200" visibility="eq(int(#battery_level/10),3)" src="charge/31.png"/>
+  <Image x="0" y="200" visibility="eq(int(#battery_level/10),4)" src="charge/41.png"/>
+  <Image x="0" y="200" visibility="eq(int(#battery_level/10),5)" src="charge/51.png"/>
+<!--   <RotationAnimation>
+  <Rotation angle="0" time="0"/>
+  <Rotation angle="-5" time="1000"/>
+  <Rotation angle="0" time="2000"/>
+  <Rotation angle="5" time="3000"/>
+  <Rotation angle="0" time="4000"/>
+ </RotationAnimation> -->
+  <Image x="0" y="200" visibility="eq(int(#battery_level/10),6)" src="charge/61.png"/>
+  <Image x="0" y="200" visibility="eq(int(#battery_level/10),7)" src="charge/71.png"/>
+  <Image x="0" y="200" visibility="eq(int(#battery_level/10),8)" src="charge/81.png"/>
+  <Image x="0" y="200" visibility="eq(int(#battery_level/10),9)" src="charge/91.png"/>
+  <Image x="0" y="200" visibility="eq(#battery_level,100)" src="charge/101.png"/>
+   </Group>
+  <!--<Image x="850" y="235" align="left" alignV="top" srcid="#battery_level/10" src="charge/num.png"/>-->
+  <!--<Image x="901" y="235" align="left" alignV="top" srcid="#battery_level%10" src="charge/num.png"/>-->
+  <!--<Image x="954" y="235" align="left" alignV="top" src="charge/percent.png"/>-->
+  <Text x="840" y="215" color="#FFFFFF" size="72" format="%d%%     " paras="#battery_level"/>
+  <!-- Надпись зарядка -->
+  <Text x="480" y="#screen_height-90" align="left" alignV="top" category="Charging" color="#ffffff" size="30" format="Зарядка" typeface="DroidSansFallback.ttf">
+    <AlphaAnimation>
+      <Alpha a="0" time="0"/>
+      <Alpha a="255" time="1000"/>
+      <Alpha a="255" time="1500"/>
+      <Alpha a="0" time="2500"/>
+    </AlphaAnimation>
+  </Text>
+  <!-- Надпись полный -->
+  <Text x="465" y="#screen_height-90" align="left" alignV="top" category="BatteryFull" color="#ffffff" size="30" text="Заряжено!" typeface="DroidSansFallback.ttf"/>
+	<Group name="Анимация батарейки"> 
+  <Image x="0" y="200" category="Charging" visibility="eq(int(#battery_level/10),0)" src="charge/01.png"/>
+  <Image x="0" y="200" category="Charging" visibility="eq(int(#battery_level/10),1)">
+    <SourcesAnimation>
+      <Source src="charge/11.png" time="100"/>
+      <Source src="charge/12.png" time="300"/>
+      <Source src="charge/13.png" time="500"/>
+      <Source src="charge/12.png" time="700"/>
+    </SourcesAnimation>
+  </Image>
+  <Image x="0" y="200" category="Charging" visibility="eq(int(#battery_level/10),2)">
+    <SourcesAnimation>
+      <Source src="charge/21.png" time="100"/>
+      <Source src="charge/22.png" time="300"/>
+      <Source src="charge/23.png" time="500"/>
+      <Source src="charge/22.png" time="700"/>
+    </SourcesAnimation>
+  </Image>
+  <Image x="0" y="200" category="Charging" visibility="eq(int(#battery_level/10),3)">
+    <SourcesAnimation>
+      <Source src="charge/31.png" time="100"/>
+      <Source src="charge/32.png" time="300"/>
+      <Source src="charge/33.png" time="500"/>
+      <Source src="charge/32.png" time="700"/>
+    </SourcesAnimation>
+  </Image>
+  <Image x="0" y="200" category="Charging" visibility="eq(int(#battery_level/10),4)">
+    <SourcesAnimation>
+      <Source src="charge/41.png" time="100"/>
+      <Source src="charge/42.png" time="300"/>
+      <Source src="charge/43.png" time="500"/>
+      <Source src="charge/42.png" time="700"/>
+    </SourcesAnimation>
+  </Image>
+  <Image x="0" y="200" category="Charging" visibility="eq(int(#battery_level/10),5)">
+    <SourcesAnimation>
+      <Source src="charge/51.png" time="100"/>
+      <Source src="charge/52.png" time="300"/>
+      <Source src="charge/53.png" time="500"/>
+      <Source src="charge/52.png" time="700"/>
+    </SourcesAnimation>
+  </Image>
+  <Image x="0" y="200" category="Charging" visibility="eq(int(#battery_level/10),6)">
+    <SourcesAnimation>
+      <Source src="charge/61.png" time="100"/>
+      <Source src="charge/62.png" time="300"/>
+      <Source src="charge/63.png" time="500"/>
+      <Source src="charge/62.png" time="700"/>
+    </SourcesAnimation>
+  </Image>
+  <Image x="0" y="200" category="Charging" visibility="eq(int(#battery_level/10),7)">
+    <SourcesAnimation>
+      <Source src="charge/71.png" time="100"/>
+      <Source src="charge/72.png" time="300"/>
+      <Source src="charge/73.png" time="500"/>
+      <Source src="charge/72.png" time="700"/>
+    </SourcesAnimation>
+  </Image>
+  <Image x="0" y="200" category="Charging" visibility="eq(int(#battery_level/10),8)">
+    <SourcesAnimation>
+      <Source src="charge/81.png" time="100"/>
+      <Source src="charge/82.png" time="300"/>
+      <Source src="charge/83.png" time="500"/>
+      <Source src="charge/82.png" time="700"/>
+    </SourcesAnimation>
+  </Image>
+  <Image x="0" y="200" category="Charging" visibility="eq(int(#battery_level/10),9)">
+    <SourcesAnimation>
+      <Source src="charge/91.png" time="100"/>
+      <Source src="charge/92.png" time="300"/>
+      <Source src="charge/93.png" time="500"/>
+      <Source src="charge/92.png" time="700"/>
+    </SourcesAnimation>
+  </Image>
+  <Image x="0" y="200" category="BatteryFull" visibility="eq(int(#battery_level/10),10)">
+    <SourcesAnimation>
+      <Source src="charge/101.png" time="100"/>
+      <Source src="charge/102.png" time="300"/>
+      <Source src="charge/103.png" time="500"/>
+      <Source src="charge/102.png" time="700"/>
+    </SourcesAnimation>
+  </Image>
+  </Group>
+  <!-- 	<Image x="165" y="862" align="left" alignV="top" category="Charging" src="charge/charge_icon.png" >
+	<AlphaAnimation> 
+			<Alpha a="0" time="0"/>
+			<Alpha a="255" time="1000"/>
+			<Alpha a="255" time="1500"/>
+			<Alpha a="0" time="2500"/>
+		</AlphaAnimation>
+	</Image> -->
+  <!-- Разблокировка -->
+  <Image x="#screen_width/2" y="#screen_height-210" src="lock.png" align="center" visibility="eq(#unlocker.state,0)">
+    <PositionAnimation>
+      <Position x="0" y="-10" time="1000"/>
+      <Position x="0" y="0" time="2000"/>
+    </PositionAnimation>
+  </Image>
+  <Image x="#screen_width/2" y="#screen_height-210+#unlocker.move_y" src="lock.png" align="center" visibility="not(eq(#unlocker.state,0))"/>
+  <Slider name="unlocker" bounceInitSpeed="2000" bounceAcceleration="3000">
+    <StartPoint x="0" y="0" w="1080" h="#screen_height-100"/>
+    <EndPoint x="0" y="-400" w="1080" h="150">
+      <Path x="0" y="0" w="1080" h="#screen_height-100">
+        <Position x="0" y="0"/>
+        <Position x="0" y="-300"/>
+      </Path>
+      <Trigger>
+        <ExternCommand command="unlock" delay="400"/>
+        <Command target="unlockcx.visibility" value="true"/>
+        <Command target="unlockxs.visibility" value="false"/>
+      </Trigger>
+    </EndPoint>
+  </Slider>
+</Lockscreen>

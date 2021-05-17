@@ -1,0 +1,287 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Lockscreen version="1" frameRate="30"  displayDesktop="true" screenWidth="1080" >
+
+
+           <!-- 充电声音 -->
+	<Var name="charging_sound" expression="#battery_state" threshold="1">
+		<Trigger>
+		<SoundCommand sound="qiche.mp3" volume="0.4" keepCur="true" condition="eq(#battery_state,1)" />
+		</Trigger>
+	</Var>
+
+
+      <Button x="292" y="#screen_height-1152" w="496" h="164">
+      <Triggers>
+           <Trigger action="down">
+           <SoundCommand sound="reached.mp3" volume="0.7" loop="false" keepCur="false"/>
+	  </Trigger>
+	</Triggers>
+     </Button>
+
+      <Button x="106" y="#screen_height-1152" w="186" h="342">
+        <Triggers>
+           <Trigger action="down">
+           <SoundCommand sound="reached1.mp3" volume="0.4" loop="false" keepCur="false"/>
+	  </Trigger>
+	</Triggers>
+     </Button>
+
+      <Button x="788" y="#screen_height-1152" w="186" h="342">
+        <Triggers>
+           <Trigger action="down">
+           <SoundCommand sound="reached1.mp3" volume="0.4" loop="false" keepCur="false"/>
+	  </Trigger>
+	</Triggers>
+     </Button>
+           
+
+    <Var name="h" expression="#screen_height" persist="true" const="true" />
+    
+	
+	
+	<Button  x="619" y="0" w="461" h="#h" > 
+      <Triggers>  
+        <Trigger action="up"> 
+           <VariableCommand expression="1" name="tc" condition="gt(#touch_begin_x-#touch_x,200)"/> 
+        </Trigger> 
+      </Triggers> 
+   </Button> 
+	
+	<Group visibility="eq(#tc,1)">
+	    <PositionAnimation> 
+	       <Position x="0" y="0" time="0" easeType="SineEasein"/> 
+	       <Position y="0" x="0" time="600"/> 
+	    <Position y="0" x="0" time="10000000"/> 
+	</PositionAnimation>
+	
+	<Image x="619" y="#h-730" src="tc.png"/>
+	
+	<Button x="883" y="#h-730" w="197" h="249">		
+	  <Triggers>		
+	    <Trigger action="up">	
+	     <IntentCommand  action="android.intent.action.MAIN" package="com.eg.android.AlipayGphone" class="com.alipay.mobile.scan.as.main.MainCaptureActivity"/>
+	     <ExternCommand command="unlock"  />		
+	   </Trigger>		
+	 </Triggers>
+	</Button>   
+	
+	<Button x="686" y="#h-730" w="197" h="249">		
+	  <Triggers>		
+	    <Trigger action="up">	
+	      <IntentCommand action="android.intent.action.MAIN" package="com.tencent.mm" class="com.tencent.mm.plugin.scanner.ui.BaseScanUI"  />	
+	     <ExternCommand command="unlock"  />		
+	   </Trigger>		
+	 </Triggers>
+	</Button>   
+	
+	<Button x="686" y="#h-481" w="197" h="249">		
+	  <Triggers>		
+	    <Trigger action="up">	
+	      <IntentCommand  action="android.intent.action.MAIN" package="com.tencent.mobileqq" class="com.tencent.mobileqq.activity.SplashActivity"/>	
+		  <ExternCommand command="unlock"  />	
+	   </Trigger>		
+	 </Triggers>
+	</Button>  
+
+   <Button x="883" y="#h-481" w="197" h="127">		
+	  <Triggers>		
+	    <Trigger action="up">	
+	    <IntentCommand  action="android.intent.action.MAIN" package="com.ss.android.ugc.aweme" class="com.ss.android.ugc.aweme.splash.SplashActivity" />
+					<ExternCommand command="unlock"/>
+	   </Trigger>		
+	 </Triggers>
+	</Button>   	
+	
+	<Button x="883" y="#h-354" w="146" h="155">		
+	  <Triggers>		
+	    <Trigger action="up">	
+	     <VariableCommand expression="0" name="tc"/>
+	     <Command value="play" target="quit.animation"/> 	
+	   </Trigger>		
+	 </Triggers>
+	</Button>   	
+	</Group>
+	
+	<Image  x="131" y="341" >
+	<SourcesAnimation>
+			<Source src="1.png" time="1000" />
+			<Source src="2.png" time="2000" />
+			<Source src="3.png" time="3000" />
+		</SourcesAnimation>
+		</Image>
+    <Image  x="944" y="341" >
+	<SourcesAnimation>
+			<Source src="11.png" time="100" />
+			<Source src="22.png" time="200" />
+			<Source src="33.png" time="300" />
+		</SourcesAnimation>
+		</Image>
+    <Time x="501" y="376" align="left" alignV="top" src="number.png" />
+    <DateTime x="581" y="535" align="left" alignV="top" color="#ff3a3834" size="30" format="yyyy/MM/dd  EEEE"/>
+     <Group visibility="ne(0,#call_missed_count)" >
+        <Text x="17" y="#screen_height-1170"  color="#ffffff" size="40" alignV="left" format="未接电话：%d" paras="#call_missed_count" />
+    </Group>
+    <Group visibility="ne(0,#sms_unread_count)" >
+        <Text x="785" y="#screen_height-1170"  color="#ffffff" size="40" alignV="left"  format="未读短信：%d" paras="#sms_unread_count" />
+    </Group> 
+	<Image  x="165" y="862" visibility="eq(int(#battery_level/10),1)">
+	<SourcesAnimation>
+			<Source src="charge/11.png" time="100" />
+			<Source src="charge/12.png" time="300" />
+			<Source src="charge/13.png" time="500" />
+			<Source src="charge/12.png" time="700" />
+		</SourcesAnimation>
+	</Image>
+	<Image  x="165" y="862" visibility="eq(int(#battery_level/10),2)">
+	<SourcesAnimation>
+			<Source src="charge/21.png" time="100" />
+			<Source src="charge/22.png" time="300" />
+			<Source src="charge/23.png" time="500" />
+			<Source src="charge/22.png" time="700" />
+		</SourcesAnimation>
+	</Image>
+	<Image  x="165" y="862" visibility="eq(int(#battery_level/10),3)">
+	<SourcesAnimation>
+			<Source src="charge/31.png" time="100" />
+			<Source src="charge/32.png" time="300" />
+			<Source src="charge/33.png" time="500" />
+			<Source src="charge/32.png" time="700" />
+		</SourcesAnimation>
+	</Image>
+	<Image  x="165" y="862" visibility="eq(int(#battery_level/10),4)">
+	<SourcesAnimation>
+			<Source src="charge/41.png" time="100" />
+			<Source src="charge/42.png" time="300" />
+			<Source src="charge/43.png" time="500" />
+			<Source src="charge/42.png" time="700" />
+		</SourcesAnimation>
+	</Image>
+	<Image  x="165" y="862" visibility="eq(int(#battery_level/10),5)">
+	<SourcesAnimation>
+			<Source src="charge/111.png" time="100" />
+			<Source src="charge/112.png" time="300" />
+			<Source src="charge/113.png" time="500" />
+			<Source src="charge/112.png" time="700" />
+		</SourcesAnimation>
+	</Image>
+	<Image  x="165" y="862" visibility="eq(int(#battery_level/10),6)">
+	<SourcesAnimation>
+			<Source src="charge/111.png" time="100" />
+			<Source src="charge/112.png" time="300" />
+			<Source src="charge/113.png" time="500" />
+			<Source src="charge/112.png" time="700" />
+		</SourcesAnimation>
+	</Image>
+	<Image  x="165" y="862" visibility="eq(int(#battery_level/10),7)">
+	<SourcesAnimation>
+			<Source src="charge/111.png" time="100" />
+			<Source src="charge/112.png" time="300" />
+			<Source src="charge/113.png" time="500" />
+			<Source src="charge/112.png" time="700" />
+		</SourcesAnimation>
+	</Image>
+	<Image  x="165" y="862" visibility="eq(int(#battery_level/10),8)">
+	<SourcesAnimation>
+			<Source src="charge/81.png" time="100" />
+			<Source src="charge/82.png" time="300" />
+			<Source src="charge/83.png" time="500" />
+			<Source src="charge/82.png" time="700" />
+		</SourcesAnimation>
+	</Image>
+	<Image  x="165" y="862" visibility="eq(int(#battery_level/10),9)">
+	<SourcesAnimation>
+			<Source src="charge/91.png" time="100" />
+			<Source src="charge/92.png" time="300" />
+			<Source src="charge/93.png" time="500" />
+			<Source src="charge/92.png" time="700" />
+		</SourcesAnimation>
+	</Image>
+	<Image  x="165" y="862" visibility="eq(#battery_level/10,10)" src="charge/100.png" />
+    <Image x="742" y="915" align="left" alignV="top" srcid="#battery_level/10" src="charge/num.png" />
+    <Image x="783" y="915" align="left" alignV="top" srcid="#battery_level%10" src="charge/num.png" />
+    <Image x="826" y="915" align="left" alignV="top" src="charge/percent.png" />
+	<Image x="165" y="862" align="left" alignV="top" category="Charging" src="charge/charge_icon.png" >
+	<AlphaAnimation> 
+			<Alpha a="0" time="0"/>
+			<Alpha a="255" time="1000"/>
+			<Alpha a="255" time="1500"/>
+			<Alpha a="0" time="2500"/>
+		</AlphaAnimation>
+	</Image>
+<!-- 充电中 -->
+    <Text x="752" y="870" align="left" alignV="top" category="Charging" color="#ff3a3834" size="30" format="正在充电" typeface="DroidSansFallback.ttf">
+	<AlphaAnimation> 
+			<Alpha a="0" time="0"/>
+			<Alpha a="255" time="1000"/>
+			<Alpha a="255" time="1500"/>
+			<Alpha a="0" time="2500"/>
+		</AlphaAnimation>
+    </Text>
+<!-- 充满 -->
+    <Text x="752" y="870" align="left" alignV="top" category="BatteryFull" color="#ff3a3834" size="30" text="电量已充满" typeface="DroidSansFallback.ttf" />	 
+<!-- 动画 -->
+
+ 
+	
+	       <Image src="app.png" x="0" y="#screen_height-215"/> 
+
+   <!--电话-->
+        <Button x="80" y="#screen_height-215" w="128" h="128">
+        <Triggers>
+        <Trigger action="up">
+        <SoundCommand sound="reached1.mp3" volume="1" loop="false" keepCur="false"/>
+        <IntentCommand action="android.intent.action.MAIN" package="com.android.contacts" class="com.android.contacts.activities.DialtactsActivity"/>
+        <ExternCommand command="unlock" />
+        </Trigger>
+        </Triggers>
+        </Button>
+
+        <!--相机-->
+        <Button x="878" y="#screen_height-215" w="128" h="128">
+        <Triggers>
+        <Trigger action="up">
+        <SoundCommand sound="reached1.mp3" volume="1" loop="false" keepCur="false"/>
+        <IntentCommand action="android.intent.action.MAIN" package="com.huawei.camera" class="com.huawei.camera" />
+        <ExternCommand command="unlock" />
+        </Trigger>
+        </Triggers>
+        </Button>
+    
+
+
+              <!--解锁-->
+    <Image x="#screen_width/2" y="#screen_height-210" src="lock.png" align="center" visibility="eq(#unlocker.state,0)">
+    <PositionAnimation><Position x="0" y="-10" time="1000"/>
+    <Position x="0" y="0" time="2000"/>
+    </PositionAnimation>
+    </Image>
+ <Image x="#screen_width/2" y="#screen_height-210+#unlocker.move_y" src="lock.png" align="center" visibility="not(eq(#unlocker.state,0))">
+</Image>
+ 	<Slider  name="unlocker" bounceInitSpeed="2000" bounceAcceleration="3000" >
+               <StartPoint x="0" y="0" w="1080" h="#screen_height-100">
+               </StartPoint>
+               <EndPoint x="0" y="-400" w="1080" h="150">
+               <Path x="0" y="0" w="1080" h="#screen_height-100">
+               <Position x="0" y="0"/>
+               <Position x="0" y="-300"/>
+               </Path>
+	<Trigger> 
+	<ExternCommand command="unlock" delay="400"/>
+	<Command target="unlockcx.visibility" value="true"/>
+	<Command target="unlockxs.visibility" value="false"/>
+	</Trigger>
+	</EndPoint>
+
+     </Slider>
+
+        <!--音效-->
+      <Button x="500" y="2140" w="200" h="260">
+      <Triggers>
+           <Trigger action="down">
+           <SoundCommand sound="reached.mp3" volume="1" loop="false" keepCur="false"/>
+	  </Trigger>
+	</Triggers>
+     </Button>
+
+
+</Lockscreen>
